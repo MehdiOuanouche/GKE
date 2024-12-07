@@ -1,2 +1,2 @@
-# GKE
-Deployment of a containerized application to Google Kubernetes Engine (GKE)
+# tripmeal-cloud
+Sample application: used to show an example of deployment on Kubernetes
