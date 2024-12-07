@@ -105,6 +105,12 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ['TRIPMEAL_KEY']
 
 
+# Health check route for Kubernetes readiness and liveness probes
+@app.route('/health')
+def health():
+    return "Healthy", 200
+
+
 @app.route('/')
 def homepage():
     return render_template('main.html')
@@ -191,7 +197,8 @@ def addrecipe():
         username = session['username']
         
 
-        c.execute('INSERT INTO recipes (title, location, ingredients, recipe, user) VALUES ("%s", "%s", "%s", "%s", "%s");' %
+
+        c.execute('INSERT INTO recipes (title, location, ingredients, recipe, user) VALUES ("%s", "%s", "%s", "%s", "%s");' % 
                                        (title, location, ingredients, recipe, username))
         conn.commit()  # Save to the database
         flash("Thanks for your recipe :)")
