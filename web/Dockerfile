@@ -1,6 +1,4 @@
-#!/usr/bin/env python
-
-# Use Python 3.7 slim image
+# Use Python 3.7 slim image as the base image
 FROM python:3.7-slim
 
 # Set working directory inside the container
@@ -12,9 +10,6 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the web application code into the container
 COPY . /app
-
-# Make sure the app.py file is executable
-RUN chmod +x /app/app.py
 
 # Set environment variable for Flask secret key
 ENV TRIPMEAL_KEY="your-secret-key-here"
